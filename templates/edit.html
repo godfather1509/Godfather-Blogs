@@ -1,0 +1,76 @@
+{% extends 'base.html'%}
+{% block title %}Edit File{% endblock title %}
+{% block body %}
+<!-- Page Header-->
+<!-- <header class="masthead" style="background-image: url('{{ url_for('static', filename=post.background_image) }}')"> -->
+<header class="masthead" style="background-image: url(/static/{{post.background_image}})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{post.title}}</h1>
+                    <h2 class="subheading">{{post.sub_title}}</h2>
+                    <span class="meta">
+                        Posted by
+                        <a href="/about">{{parameter["writer"]}}</a>
+                        on {{post.date}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+
+                <form id="contactForm" method='POST' action="/edit/{{Sr}}" enctype="multipart/form-data">
+                    {% if Sr=="0" %}
+                    <h1>Add Post</h1>
+                    {% else %}
+                    <h1>Edit Post</h1>
+                    {% endif %}
+                    <div class="form-floating">
+                        <input class="form-control" id="title" type="text" name="title" value="{{post.title}}"
+                            placeholder="Title" required />
+                        <label for="name">Title</label>
+                        <div class="invalid-feedback" required>A title is required.</div>
+                    </div>
+                    <div class="form-floating">
+                        <input class="form-control" id="tagline" type="text" placeholder="Tagline" name="tagline"
+                            value="{{post.sub_title}}" required />
+                        <label for="tagline">Tagline</label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="content" name="content"
+                            style="height: 12rem">{{post.content}}</textarea>
+                        <label for="content"></label>
+                    </div>
+
+                    <label class="mt-3 d-inline-flex flex-column mb-3 btn btn-primary text-uppercase">
+                        Upload Image
+                        <input type="file" name="file1" style="display: none;">
+                    </label>
+                    {% if post.background_image%}
+                    <div>
+                        <img src="/static/{{post.background_image}}" style="width: 200px;">
+                    </div>
+                    {% endif %}
+                    <!-- Submit Button-->
+                    <button class="mt-3 btn btn-primary text-uppercase d-flex flex-column" id="submitButton"
+                        type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/static/js/scripts.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+{% endblock body %}

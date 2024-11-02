@@ -1,0 +1,19 @@
+{
+    "params": {
+        "contact_db": "sqlite:///contacts.db",
+        "post_db": "sqlite:///post_content.db",
+        "name": "Godfather",
+        "writer": "Ayush",
+        "linkedin": "https://www.linkedin.com/in/ayush-gupta-3aa46927b/",
+        "instagram": "https://www.instagram.com/godfather_1509/",
+        "github": "https://github.com/godfather1509",
+        "no_of_posts": 2,
+        "upload_location":"C:\\Users\\ayush\\OneDrive\\Desktop\\python\\Python flask\\Tech Blog\\static\\img"
+    },
+    "credentials": {
+        "username": "ayush1500g@gmail.com",
+        "email": "ayush1500g@gmail.com",
+        "password": "roml pyso volo wisr",
+        "login_password": "Ayush1509"
+    }
+}
