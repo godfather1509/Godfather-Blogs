@@ -234,4 +234,4 @@ if __name__ == "__main__":
         db.create_all(bind_key="posts")
         db.create_all(bind_key="contacts")
         # this instruction creates database in instance folder
-    app.run(debug=True)
+    app.run(debug=True, port=5500)
