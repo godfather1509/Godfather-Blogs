@@ -53,13 +53,7 @@ class Post(db.Model):
     background_image = db.Column(db.String(100), nullable=False)
     date = db.Column(db.String(20), default=time.strftime("%d %b %Y"))
 
-
-@app.route("/")
-def hello():
-    # post = Post.query.all()[
-    #     0 : parameter["no_of_posts"]
-    # ]  # getting first 5 posts from database   
-    posts = Post.query.filter_by().all()
+def pagination(posts):
     # post has all the rows in our database in list form each element is object of Post class
     last = math.ceil(len(posts) / int(parameter["no_of_posts"]))
     page = request.args.get("page")
@@ -81,9 +75,18 @@ def hello():
     else:
         prev = "/?page=" + str(page - 1)
         next = "/?page=" + str(page + 1)
+    return [prev,next,posts]
+
+@app.route("/")
+def hello():
+    # post = Post.query.all()[
+    #     0 : parameter["no_of_posts"]
+    # ]  # getting first 5 posts from database   
+    posts = Post.query.filter_by().all()
+    list=pagination(posts)
 
     return render_template(
-        "index.html", parameter=parameter, post=posts, prev=prev, next=next
+        "index.html", parameter=parameter, post=list[2], prev=list[0], next=list[1]
     )
 
 
@@ -219,6 +222,7 @@ def search_func():
                 Post.content.like(search),
             )
         ).all()
+        list=pagination(post)
         """
         >> .filter_by performs exact match meaning it will only return item when it matches exactly 
         >> .like allows searching for results containing the search term rather than matching it exactly.
@@ -227,7 +231,10 @@ def search_func():
         A wildcard is a special character used in search queries to represent one or more unknown characters. Wildcards allow you to 
         broaden a search by specifying patterns rather than exact text.
         """
-        return render_template("index.html", post=post, parameter=parameter)
+    else:
+        post = Post.query.filter_by().all()
+        list=pagination(post)
+    return render_template("index.html", parameter=parameter, post=list[2], prev=list[0], next=list[1])
 
 
 if __name__ == "__main__":
