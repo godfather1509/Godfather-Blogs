@@ -198,6 +198,7 @@ def edit_post(Sr):
         post = Post.query.filter_by(Sr=Sr).first()
 
         return render_template("edit.html", post=post, parameter=parameter, Sr=Sr)
+    return ("Unauthorized User")
 
 
 @app.route("/logout")

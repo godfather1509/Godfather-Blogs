@@ -2,8 +2,8 @@
     "params": {
         "contact_db": "sqlite:///contacts.db",
         "post_db": "sqlite:///post_content.db",
-        "name": "Godfather",
-        "writer": "Ayush",
+        "name": "Glimpse",
+        "writer": "Ayush Gupta",
         "linkedin": "https://www.linkedin.com/in/ayush-gupta-3aa46927b/",
         "instagram": "https://www.instagram.com/godfather_1509/",
         "github": "https://github.com/godfather1509",
